@@ -25,7 +25,8 @@ import java.awt.*;
 * @Test2 for viewing profile page
 * @Test3 for searching on particular application
 * @Test4 for posting what we feel
-* @Test5 for posting media like photo,video on application*/
+* @Test5 for posting media like photo,video on application
+* @Test6 for logging out from application*/
 
 @Listeners(CustomListener.class)
 public class LinkedIn_Test extends BaseClass {
@@ -83,5 +84,17 @@ public class LinkedIn_Test extends BaseClass {
         String expectedTitle = "Feed | LinkedIn";
         Assert.assertEquals(actualTitle, expectedTitle);
         System.out.println("Photo is posted successfully!!");
+    }
+
+    @Test
+    public void logoutTest() throws InterruptedException {
+        Login_Page login = new Login_Page(driver);
+        login.login();
+        Login_Page logOut = new Login_Page(driver);
+        String actualTitle = logOut.logout();
+        String expectedTitle = "LinkedIn: Log In or Sign Up";
+        Assert.assertEquals(actualTitle,expectedTitle);
+        System.out.println("You are logout from application.");
+
     }
 }

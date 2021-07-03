@@ -17,7 +17,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 /*@Description-Created Login_Page Class for logging in the application
-* */
+* Created login method for logging into application
+* Created logout method for logging out from application.*/
 
 public class Login_Page extends BaseClass {
 
@@ -29,7 +30,10 @@ public class Login_Page extends BaseClass {
     WebElement Password;
     @FindBy(className = "login__form_action_container")
     WebElement signin_btn;
-
+    @FindBy(xpath = "//img[@id='ember34']")
+    WebElement profile_dropdown;
+    @FindBy(xpath = "//a[normalize-space()='Sign Out']")
+    WebElement Sign_out;
 
     public  Login_Page(WebDriver driver) {
         PageFactory.initElements(driver,this);
@@ -41,6 +45,14 @@ public class Login_Page extends BaseClass {
         email_or_username.sendKeys("vaishnavibirle1133@gmail.com");
         Password.sendKeys("vaishnavi@123");
         signin_btn.click();
+        Thread.sleep(2000);
+        return driver.getTitle();
+    }
+
+    public String logout() throws InterruptedException {
+        profile_dropdown.click();
+        Thread.sleep(3000);
+        Sign_out.click();
         Thread.sleep(2000);
         return driver.getTitle();
     }
